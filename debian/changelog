@@ -1,4 +1,4 @@
-ubuntu-advantage-tools (19.5) UNRELEASED; urgency=medium
+ubuntu-advantage-tools (19.5~ubuntu14.04.1) trusty; urgency=medium
 
   * New upstream release (LP: #1832757):
     - packaging:
@@ -53,7 +53,7 @@ ubuntu-advantage-tools (19.5) UNRELEASED; urgency=medium
     - repo: un-comment ESM sources.list lines on repo disable
     - updated manpage and help docs
 
- -- Andreas Hasenack <andreas@canonical.com>  Wed, 19 Jun 2019 09:27:57 -0300
+ -- Andreas Hasenack <andreas@canonical.com>  Wed, 03 Jul 2019 15:20:49 -0300
 
 ubuntu-advantage-tools (19.4.1) eoan; urgency=medium
 
