@@ -18,6 +18,7 @@ API_V1_TMPL_CONTEXT_MACHINE_TOKEN_REFRESH = (
 API_V1_TMPL_RESOURCE_MACHINE_ACCESS = (
     "/v1/resources/{resource}/context/machines/{machine}"
 )
+API_V1_PREMIUM_AWS_TOKEN = '/v1/clouds/aws/token'
 
 
 class ContractAPIError(util.UrlError):
@@ -82,6 +83,21 @@ class UAContractClient(serviceclient.UAServiceClient):
         )
         self.cfg.write_cache("machine-token", machine_token)
         return machine_token
+
+    def request_premium_aws_attach(self, pkcs7: str):
+        """Requests machine attach for premium images on AWS.
+
+        @param pkcs7: string obtained from AWS metadata service from
+            http://169.254.169.254/latest/dynamic/instance-identity/pkcs7
+            from this instance.
+
+        @return: Dict of the JSON response containing the contract-token.
+        """
+        data = {'pkcs7': pkcs7}
+        response, _headers = self.request_url(
+            API_V1_PREMIUM_AWS_TOKEN, data=data)
+        self.cfg.write_cache('contract-token', response)
+        return response
 
     def request_resource_machine_access(
         self,
