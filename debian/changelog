@@ -1,3 +1,9 @@
+ubuntu-advantage-tools (19.5.1ubuntu6~14.04.2) trusty; urgency=medium
+
+  * Flakes
+
+ -- Chad Smith <chad.smith@canonical.com>  Fri, 30 Aug 2019 12:45:31 -0600
+
 ubuntu-advantage-tools (19.5.1ubuntu6~14.04.1) trusty; urgency=medium
 
   * On trusty detect clouds using /var/lib/cloud/instance/obj.pkl

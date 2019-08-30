@@ -1,6 +1,3 @@
-import json
-import pickle
-
 from uaclient import exceptions
 from uaclient import util
 from uaclient import clouds
@@ -10,7 +7,6 @@ DS_PICKLE_FILE = '/var/lib/cloud/instance/obj.pkl'
 
 @util.retry(FileNotFoundError, [1, 2])
 def get_cloud_type_from_datasource_pickle(pkl_file=DS_PICKLE_FILE) -> str:
-    import pdb; pdb.set_trace()
     with open(pkl_file, 'rb') as stream:
         py2_pickle_content = stream.read()
     DATASOURCE_MATCH = b'DataSource'
