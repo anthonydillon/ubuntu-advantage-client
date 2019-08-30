@@ -1,6 +1,10 @@
+from uaclient.clouds import aws
 from uaclient import exceptions
 from uaclient import util
 from uaclient import clouds
+
+CLOUD_INSTANCE_MAP = {
+    'ec2': aws.UAPremiumAWSInstance, 'aws': aws.UAPremiumAWSInstance}
 
 DS_PICKLE_FILE = '/var/lib/cloud/instance/obj.pkl'
 

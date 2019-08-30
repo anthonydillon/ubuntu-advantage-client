@@ -297,7 +297,7 @@ def action_detach(args, cfg):
 def action_attach_premium(args, cfg):
     from uaclient.clouds import identity
     cloud_type = identity.get_cloud_type()
-    if cloud_type != 'aws':
+    if cloud_type not in ('aws', 'ec2'):
         print(
             "No premium image support for cloud '%s'. Use ua attach <token>" %
             cloud_type)
