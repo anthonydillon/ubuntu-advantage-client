@@ -1,3 +1,9 @@
+ubuntu-advantage-tools (19.5.1ubuntu6~14.04.1) trusty; urgency=medium
+
+  * On trusty detect clouds using /var/lib/cloud/instance/obj.pkl
+
+ -- Chad Smith <chad.smith@canonical.com>  Fri, 30 Aug 2019 12:33:52 -0600
+
 ubuntu-advantage-tools (19.5.1ubuntu5~14.04.3) trusty; urgency=medium
 
   * Increment debian changelog version because numbers are free but ppa

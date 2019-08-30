@@ -1,17 +1,26 @@
 import json
+import pickle
 
 from uaclient import exceptions
 from uaclient import util
 from uaclient import clouds
 
-CLOUDINIT_RESULT_FILE = '/var/lib/cloud/data/result.json'
+DS_PICKLE_FILE = '/var/lib/cloud/instance/obj.pkl'
 
 
 @util.retry(FileNotFoundError, [1, 2])
-def get_cloud_type_from_result_file(result_file=CLOUDINIT_RESULT_FILE) -> str:
-    result = json.loads((util.load_file(result_file)))
-    dsname = result['v1']['datasource'].split()[0].lower()
-    return dsname.replace('datasource', '')
+def get_cloud_type_from_datasource_pickle(pkl_file=DS_PICKLE_FILE) -> str:
+    import pdb; pdb.set_trace()
+    with open(pkl_file, 'rb') as stream:
+        py2_pickle_content = stream.read()
+    DATASOURCE_MATCH = b'DataSource'
+    for py2_pickle_var in py2_pickle_content.split(b'\n')[0:6]:
+        if DATASOURCE_MATCH in py2_pickle_var:
+            if py2_pickle_var[:len(DATASOURCE_MATCH)] != DATASOURCE_MATCH:
+                continue
+            ds_classname = py2_pickle_var[len(DATASOURCE_MATCH):].decode()
+            return ds_classname.lower().replace('datasource', '')
+    return None
 
 
 def get_cloud_type() -> str:
@@ -20,9 +29,9 @@ def get_cloud_type() -> str:
         out, _err = util.subp(['cloud-id'])
         return out.strip()
     try:
-        return get_cloud_type_from_result_file()
+        return get_cloud_type_from_datasource_pickle()
     except FileNotFoundError:
-        pass
+        return 'unknown: no detected datasource yet'
     return ''
 
 
