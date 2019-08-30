@@ -41,7 +41,7 @@ def cloud_instance_factory() -> clouds.UAPremiumCloudInstance:
         raise exceptions.UserFacingError(
             'Could not determine cloud type UA Premium Images.'
             ' Unable to attach')
-    cls = clouds.CLOUD_INSTANCE_MAP.get(cloud_type)
+    cls = CLOUD_INSTANCE_MAP.get(cloud_type)
     if not cls:
         raise exceptions.UserFacingError(
             "No UAPremiumCloudInstance class available for cloud type '%s'" %
